@@ -12,7 +12,7 @@ public class LoadManager : MonoBehaviour
     public GameObject resume;
     public GameObject quit;
 
-    bool isPaused = true;
+    bool isPaused = false;
 
     public void ClickStart()
     {
@@ -26,10 +26,11 @@ public class LoadManager : MonoBehaviour
 
     public void Pause()
     {
-        if (isPaused == true)
+        if (!isPaused)
         {
             pause.SetActive(false);
             Time.timeScale = 0;
+            AudioListener.pause = true;
             resume.SetActive(true);
             quit.SetActive(true);
         }
@@ -37,7 +38,7 @@ public class LoadManager : MonoBehaviour
         {
             pause.SetActive(true);
             Time.timeScale = 1;
-            pause.SetActive(true);
+            AudioListener.pause = false;
             resume.SetActive(false);
             quit.SetActive(false);
         }
